@@ -16,5 +16,5 @@ Linux WDMyCloud 3.2.26 #1 SMP Thu Jul 9 11:14:15 PDT 2015 wd-2.4-rel armv7l GNU/
 
 # INSTALL
 
-1. Clone the wdmycloud-ssh-certs source.
-2. Add the wdmycloud-ssh-certs/lib directory to your systems `$PATH` environment variable.
+1. Run `git clone https://github.com/mcandre/wdmycloud-ssh-certs.git`
+2. Add the `lib` directory to your system's `$PATH` environment variable.
