@@ -16,44 +16,44 @@ fi
 REMOTE_ADDRESS="$1"
 
 if [ -z "$REMOTE_ADDRESS" ]; then
-  usage
-  exit 1
+    usage
+    exit 1
 fi
 
 REMOTE_PASSWORD="$2"
 
 if [ -z "REMOTE_PASSWORD" ]; then
-  usage
-  exit 1
+    usage
+    exit 1
 fi
 
 AUXILLIARY_USERNAME="$3"
 
 if [ -z "$AUXILLIARY_USERNAME" ]; then
-  usage
-  exit 1
+    usage
+    exit 1
 fi
 
 LOCAL_PUBLIC_KEY="$4"
 
 if [ -z "LOCAL_PUBLIC_KEY" ]; then
-  usage
-  exit 1
+    usage
+    exit 1
 fi
 
 sshpass -p "$REMOTE_PASSWORD" \
-    ssh "$REMOTE_ADDRESS" mkdir -p "\$HOME/.ssh"
+ssh "$REMOTE_ADDRESS" mkdir -p "\$HOME/.ssh"
 sshpass -p "$REMOTE_PASSWORD" \
-    scp "$LOCAL_PUBLIC_KEY" "${REMOTE_ADDRESS}:\$HOME/.ssh/authorized_keys"
+scp "$LOCAL_PUBLIC_KEY" "${REMOTE_ADDRESS}:\$HOME/.ssh/authorized_keys"
 sshpass -p "$REMOTE_PASSWORD" \
-    ssh "$REMOTE_ADDRESS" chown "${AUXILLIARY_USERNAME}:" "\$HOME/.ssh/authorized_keys"
+ssh "$REMOTE_ADDRESS" chown "${AUXILLIARY_USERNAME}:" "\$HOME/.ssh/authorized_keys"
 sshpass -p "$REMOTE_PASSWORD" \
-    ssh "$REMOTE_ADDRESS" chmod 0600 "\$HOME/.ssh/authorized_keys"
+ssh "$REMOTE_ADDRESS" chmod 0600 "\$HOME/.ssh/authorized_keys"
 sshpass -p "$REMOTE_PASSWORD" \
-    ssh "$REMOTE_ADDRESS" chown "${AUXILLIARY_USERNAME}:" "\$HOME/.ssh"
+ssh "$REMOTE_ADDRESS" chown "${AUXILLIARY_USERNAME}:" "\$HOME/.ssh"
 sshpass -p "$REMOTE_PASSWORD" \
-    ssh "$REMOTE_ADDRESS" chmod 0700 "\$HOME/.ssh"
+ssh "$REMOTE_ADDRESS" chmod 0700 "\$HOME/.ssh"
 sshpass -p "$REMOTE_PASSWORD" \
-    ssh "$REMOTE_ADDRESS" chown 'root:' "\$HOME"
+ssh "$REMOTE_ADDRESS" chown 'root:' "\$HOME"
 sshpass -p "$REMOTE_PASSWORD" \
-    ssh "$REMOTE_ADDRESS" chmod 0755 "\$HOME"
+ssh "$REMOTE_ADDRESS" chmod 0755 "\$HOME"
